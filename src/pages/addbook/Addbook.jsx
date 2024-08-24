@@ -8,6 +8,8 @@ const Addbook = () => {
     bookPrice: '',
     ISBN: '',
     authorName: '',
+    publication: '',
+    publishedAt: '', // Added publishedAt to the state as a date
     imageUrl: '' // To store image URL or file name
   });
 
@@ -32,6 +34,9 @@ const Addbook = () => {
     formData.append('bookPrice', book.bookPrice);
     formData.append('ISBN', book.ISBN);
     formData.append('authorName', book.authorName);
+    formData.append('publication', book.publication);
+    formData.append('publishedAt', book.publishedAt); // Added publishedAt to form data
+
     if (image) {
       formData.append('image', image); // Append the image file
     }
@@ -49,6 +54,8 @@ const Addbook = () => {
           bookPrice: '',
           ISBN: '',
           authorName: '',
+          publication: '',
+          publishedAt: '', // Reset publishedAt
           imageUrl: ''
         });
         setImage(null); // Reset the image state
@@ -99,11 +106,22 @@ const Addbook = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Author Name</label>
+            <label className="block text-sm font-medium text-gray-700">Publication Name</label>
             <input
               type="text"
-              name="authorName"
-              value={book.authorName}
+              name="publication"
+              value={book.publication}
+              onChange={handleChange}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Published At</label>
+            <input
+              type="date"
+              name="publishedAt"
+              value={book.publishedAt}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
               required
